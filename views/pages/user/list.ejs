@@ -12,11 +12,6 @@
   </header>
 
   <main class="container py-4">
-    <div class="mb-2 mr-3">
-      <div class="row justify-content-end">
-        <a href="/professor/quiz/create" class="btn btn-primary">Create New</a>
-      </div>
-    </div>
     <table class="table table-bordered table-striped">
       <thead>
         <th>ID</th>
@@ -41,7 +36,6 @@
           </td>
           <td>
             <a class="btn btn-dark btn-sm" href="/quiz/<%= data[i]['_id'] %>">View</a>
-            <a class="btn btn-danger btn-sm" href="/quiz/<%= data[i]['_id'] %>/delete">Delete</a>
           </td>
         </tr>
         <% } %>

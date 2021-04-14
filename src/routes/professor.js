@@ -32,4 +32,7 @@ router.post(
   quiz.store_one_question
 );
 
+router.get("/quiz/:id/delete", connectEnsureLogin.ensureLoggedIn("/home"), quiz.destoryQuiz);
+
+
 module.exports = router;

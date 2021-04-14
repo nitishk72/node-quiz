@@ -3,7 +3,8 @@ const quiz = require("../controllers/quiz");
 
 const connectEnsureLogin = require("connect-ensure-login");
 
-router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), quiz.list);
+router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), quiz.listForUser);
+router.get("/:id", connectEnsureLogin.ensureLoggedIn("/login"), quiz.findForUser);
 router.get("/new", connectEnsureLogin.ensureLoggedIn("/login"), quiz.create);
 router.get(
   "/:quizID/add",
