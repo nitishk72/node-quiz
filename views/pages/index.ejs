@@ -3,6 +3,30 @@
 
 <head>
   <%- include('../partials/head'); %>
+    <style>
+      .bg-overlay {
+        background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .6)), url('https://cdn.vanderbilt.edu/wp-content/uploads/sites/59/20200323102524/computer-test.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        color: #fff;
+        height: 70vh;
+        padding-top: 50px;
+      }
+
+
+      .extra-spacing {
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+
+      @media (min-width: 768px) {
+        .extra-spacing {
+          padding-top: 75px;
+          padding-bottom: 75px;
+        }
+      }
+    </style>
 </head>
 
 <body>
@@ -11,17 +35,122 @@
     <%- include('../partials/header'); %>
   </header>
 
-  <main class="container">
-    <div class="jumbotron">
-      <h1>This is great</h1>
-      <p>Welcome to templating using EJS</p>
+  <main>
+    <!-- Banner -->
+    <div class="bg-overlay">
+      <div class="container">
+        <div class="d-flex align-items-center" style="min-height: 70vh;">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-primary display-2 animate__animated animate__bounce animate__delay-1s animate__infinite">
+                Go Digital <span class="text-danger">#Digital_india</span>
+              </h1>
+            </div>
+            <div class="col-12">
+              <h2 id="digital" class="text-white display-4"></h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Banner  End-->
+
+    <!-- Feature One -->
+    <div style="background:#efefef" class="extra-spacing">
+      <div class="container mt-4">
+        <div class="row featurette d-flex align-items-center">
+          <div class="col-md-7 mb-2 order-md-2">
+            <h2 class="featurette-heading text-danger">
+              <span class="text-muted">Online</span> Test
+              <br>
+            </h2>
+            <p class="lead">
+              Do online test
+            </p>
+            <br>
+            <a href="/test" class="btn btn-dark btn-lg">
+              See sample Test
+            </a>
+          </div>
+          <div class="col-md-5">
+            <img src="/images/undraw_online_test_gba7.svg" style="width:100%" alt="publish article">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Feature One End -->
+
+    <!-- Feature Two -->
+    <div class="extra-spacing">
+      <div class="container mt-4">
+        <div class="row featurette d-flex align-items-center">
+          <div class="col-md-7 mb-2 ">
+            <h2 class="featurette-heading text-danger">
+              <span class="text-muted">Detailed </span> analysics
+              <br>
+            </h2>
+            <p class="lead">
+              Get detialed analysic
+            </p>
+            <br>
+            <a href="/anlysics" class="btn btn-dark btn-lg">
+              See Example
+            </a>
+          </div>
+          <div class="col-md-5 order-md-2">
+            <img src="/images/undraw_detailed_analysis_xn7y.svg" style="width:100%" alt="publish article">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Feature Two End -->
+
+    <!-- Feature Three -->
+    <div style="background:#efefef" class="extra-spacing">
+      <div class="container mt-4">
+        <div class="row featurette d-flex align-items-center">
+          <div class="col-md-7 mb-2 order-md-2">
+            <h2 class="featurette-heading text-danger">
+              <span class="text-muted">Exam like </span> Experience
+              <br>
+            </h2>
+            <p class="lead">
+              Exam like experice
+            </p>
+            <h2 class="featurette-heading text-muted">
+              #OnlineExam
+            </h2>
+          </div>
+          <div class="col-md-5">
+            <img src="/images/undraw_exams_g4ow.svg" style="width:100%" alt="publish article">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Feature Three End -->
+
   </main>
 
   <footer>
     <%- include('../partials/footer'); %>
   </footer>
 
+  <script>
+    new TypeIt("#digital", {
+      speed: 100,
+      loop: true
+    })
+      .type("Start taking online test for your Organization", { delay: 300 })
+      .pause(300)
+      .delete(12)
+      .type('School')
+      .pause(300)
+      .delete(6)
+      .type('Coaching')
+      .pause(300)
+      .delete(9)
+      .go();
+  </script>
 </body>
 
 </html>

@@ -11,19 +11,36 @@
     <%- include('../../partials/header'); %>
   </header>
 
-  <main class="container">
-    <div class="jumbotron">
-      <h1>Login</h1>
-    </div>
-    <div class="continer" style="max-width: 400px;margin: auto;">
-      <form class="form-signin" action="/login" method="POST">
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Email address" required="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
-          required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+  <main class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-9 col-lg-7">
+        <form class="form-signin" action="/login" method="POST">
+          <div class="card">
+            <div class="card-header">Login Form </div>
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right" for="inputEmail">Username</label>
+                <div class="col-md-8">
+                  <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Email address"
+                    required="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right" for="inputPassword">Password</label>
+                <div class="col-md-8">
+                  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
+                    required="">
+                </div>
+              </div>
+              <div class="form-group row mb-0">
+                <div class="col-md-8 offset-md-4">
+                  <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </main>
 

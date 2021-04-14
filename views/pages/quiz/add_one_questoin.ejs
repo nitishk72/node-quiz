@@ -11,9 +11,79 @@
     <%- include('../../partials/header'); %>
   </header>
 
-  <main class="container">
-    <div class="jumbotron">
-      <h1>Add one Question and Answer to the quiz</h1>
+  <main class="container py-4">
+    <div class="card mb-2">
+      <div class="card-header">Quiz Detail</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <div class="my-2">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" disabled value="<%=data['name']%>">
+            </div>
+            <div class="my-2">
+              <label for="name">Description</label>
+
+              <textarea class="form-control" disabled rows="7"><%=data['description']%></textarea>
+            </div>
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <form action="/professor/quiz/<%= data['_id']%>/add-one" method="post">
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="my-2">
+            <textarea class="form-control" rows="3" placeholder="Enter Question Here"></textarea>
+          </div>
+          <div class="my-2">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">Option A</div>
+              <div class="col-md-9 col-lg-10">
+                <input type="text" name="option_a" id="option_a" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">Option B</div>
+              <div class="col-md-9 col-lg-10">
+                <input type="text" name="option_b" id="option_b" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">Option C</div>
+              <div class="col-md-9 col-lg-10">
+                <input type="text" name="option_c" id="option_c" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">Option D</div>
+              <div class="col-md-9 col-lg-10">
+                <input type="text" name="option_d" id="option_d" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">
+                <button type="submit" class="btn btn-primary btn-block">Create</button>
+              </div>
+              <div class="col-md-9 col-lg-10">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
     </div>
   </main>
 

@@ -7,6 +7,7 @@ const UserDetails = require("./src/models/user");
 const app = express();
 
 dotenv.config();
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,6 +40,7 @@ app.use("/", require("./src/routes/static"));
 app.use("/", require("./src/routes/auth"));
 app.use("/", require("./src/routes/dashboard"));
 app.use("/quiz", require("./src/routes/quiz"));
+app.use("/professor", require("./src/routes/professor"));
 
 function startCallback() {
   let message = `Website is available at http://localhost:${PORT}`;
