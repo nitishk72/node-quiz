@@ -12,29 +12,11 @@
   </header>
 
   <main class="container py-4">
-    <div class="card mb-2">
-      <div class="card-header">Quiz Detail</div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <div class="my-2">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" disabled value="<%=data['name']%>">
-            </div>
-            <div class="my-2">
-              <label for="name">Description</label>
-
-              <textarea class="form-control" disabled rows="7"><%=data['description']%></textarea>
-            </div>
-          </div>
-          <div class="col">
-
-          </div>
-        </div>
-      </div>
-    </div>
     <form action="/professor/quiz/<%= data['_id']%>/add-one" method="post">
       <div class="card mt-2">
+        <div class="card-header">
+          Add Question
+        </div>
         <div class="card-body">
           <div class="my-2">
             <textarea class="form-control" rows="3" placeholder="Enter Question Here" name="question"></textarea>

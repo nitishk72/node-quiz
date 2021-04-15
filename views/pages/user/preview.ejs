@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+  <style>
+    .option{
+      cursor: pointer;
+      border:1px solid gray;
+      padding:10px;
+      margin: 4px 0px;
+      border-radius: 4px;
+    }
+    .option.selected{
+      background: gray;
+      color:#fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="container py-4">
+    <div class="card">
+      <div class="card-header">
+        <%= data['name'] %>
+      </div>
+      <div class="card-body">
+        <%= data['description'] %>
+        <ul>
+          <li class="my-4">All the Questions are compulsory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="my-2">
+      <a href="<%= data['_id'] %>/start" class="btn btn-primary btn-block">Start</a>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+</body>
+
+</html>

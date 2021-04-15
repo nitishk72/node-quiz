@@ -4,7 +4,11 @@ const quiz = require("../controllers/quiz");
 const connectEnsureLogin = require("connect-ensure-login");
 
 router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), quiz.listForUser);
-router.get("/:id", connectEnsureLogin.ensureLoggedIn("/login"), quiz.findForUser);
+
+router.get("/:id", connectEnsureLogin.ensureLoggedIn("/login"), quiz.findForPreview);
+
+router.get("/:id/start", connectEnsureLogin.ensureLoggedIn("/login"), quiz.findForUser);
+
 router.get("/new", connectEnsureLogin.ensureLoggedIn("/login"), quiz.create);
 router.get(
   "/:quizID/add",
@@ -16,5 +20,8 @@ router.get(
   connectEnsureLogin.ensureLoggedIn("/login"),
   quiz.add_one_question
 );
+
+router.post('/ajax/submit-response', connectEnsureLogin.ensureLoggedIn('/login'), quiz.submitResponse);
+
 
 module.exports = router;

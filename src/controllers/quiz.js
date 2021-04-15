@@ -1,6 +1,7 @@
 const Quiz = require("../models/quiz");
 const Question = require("../models/questions");
 const Option = require("../models/options");
+const submitResponse = require('./quiz/submit');
 
 async function find(req, res, next) {
   const doc = await Quiz.findById(req.params.id).populate({
@@ -15,6 +16,22 @@ async function find(req, res, next) {
     isLoggesIn: true,
     user: req.user,
     role: "Professor",
+    data: doc,
+  });
+}
+async function findForPreview(req, res, next) {
+  const doc = await Quiz.findById(req.params.id).populate({
+    path:'questions',
+    populate: {
+      path: 'options',
+      model: 'Option'
+    } 
+  });
+  if (!doc) return res.send("Not found");
+  return res.render("pages/user/preview", {
+    isLoggesIn: true,
+    user: req.user,
+    role: "User",
     data: doc,
   });
 }
@@ -136,6 +153,8 @@ async function store_one_question(req, res, next) {
   });
   return res.redirect(`/professor/quiz/${req.params.id}`);
 }
+
+
 module.exports = {
   find,
   list,
@@ -145,6 +164,8 @@ module.exports = {
   add_one_question,
   store_one_question,
   destoryQuiz,
+  findForPreview,
   findForUser,
   listForUser,
+  submitResponse,
 };

@@ -25,15 +25,6 @@
   </header>
 
   <main class="container py-4">
-    <div class="card">
-      <div class="card-header">
-        <%= data['name'] %>
-      </div>
-      <div class="card-body">
-        <%= data['description'] %>
-      </div>
-    </div>
-    
     <% for(var i=0; i < data['questions'].length; i++) { %>
       <div class="card my-4">
         <div class="card-header">
@@ -51,10 +42,10 @@
         </div>
         <div class="card-body" id="<%= data['questions'][i]['_id'] %>">
           <% for(var j=0; j < data['questions'][i]['options'].length; j++) { %>
-            <div class="option" 
+            <div class="option"  id="<%= data['questions'][i]['options'][j]['_id'] %>"
             data-correct="<%= data['questions'][i]['options'][j]['isCorrect'] %>">
-            <%= data['questions'][i]['options'][j]['text'] %>
-          </div>
+              <%= data['questions'][i]['options'][j]['text'] %>
+            </div>
           <% } %>
         </div>
       </div>
@@ -69,17 +60,31 @@
     <%- include('../../partials/footer'); %>
   </footer>
 <script>
+  let quizId = "<%= data['_id'] %>";
+  let userId = "<%= user['_id'] %>";
   $('.option').on('click', function(){
     let parentId = $(this).parent()[0].id;
     $(`#${parentId}`).children().removeClass("selected");
     $(this).addClass("selected");
   });
-
   $('#submit').on('click', function(){
-    // Make ajax request to the server;
-
-    // show thank you pages
-    
+    let response = {};
+    $('.selected').each(function(){
+      let questionId = $(this).parent()[0].id;
+      let answerId = this.id;
+      response[questionId] = answerId;
+    });
+   fetch(
+    "/quiz/ajax/submit-response",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( {response,quizId, userId })
+    }).then(function( msg ) {
+      alert( "Data Saved: " + msg );
+    });
   });
 </script>
 </body>

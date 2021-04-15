@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Questoin = new Schema(
+const Question = new Schema(
   {
     text: String,
     positive_point: Number,
@@ -11,5 +11,5 @@ const Questoin = new Schema(
   { timestamps: true }
 );
 
-const Questoins = mongoose.model("Question", Questoin, "question");
-module.exports = Questoins;
+const Questions = mongoose.model("Question", Question, "question");
+module.exports = Questions;
