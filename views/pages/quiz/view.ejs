@@ -35,7 +35,13 @@
         <%= data['name'] %>
       </div>
       <div class="card-body">
-        <%= data['description'] %>
+        <div class="mb-2">
+          <%= data['description'] %>
+        </div>
+        <div class="mb-2">
+          Total Attmpted : <%= data['attempted'] %> times
+        </div>
+        <a href="/professor/quiz/6078062bc3edca5986af5226/result" class="btn btn-primary">View Student Details</a>
       </div>
     </div>
     

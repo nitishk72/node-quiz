@@ -1,5 +1,6 @@
 const Question = require("../../models/questions");
 const Response = require("../../models/response");
+const Quiz = require("../../models/quiz");
 
 async function submitResponse(req, res, next) {
   let {quizId, response, userId} = req.body;
@@ -11,6 +12,8 @@ async function submitResponse(req, res, next) {
   }).populate({
     path:'options'
   });
+  let quiz = await Quiz.findByIdAndUpdate({'_id' :quizId },
+  {$inc : {'attempted' : 1}});
 
   questions.forEach(function(question) {
     let qId = question['_id'];

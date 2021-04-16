@@ -1,5 +1,6 @@
 const Quiz = require("../models/quiz");
 const Question = require("../models/questions");
+const Response = require("../models/response");
 const Option = require("../models/options");
 const submitResponse = require('./quiz/submit');
 
@@ -154,6 +155,19 @@ async function store_one_question(req, res, next) {
   return res.redirect(`/professor/quiz/${req.params.id}`);
 }
 
+async function listAttemptedStudents(req, res,next) {
+  const doc = await Response.find({'quizId' : req.params.id}).populate({
+      path:'userId',
+  });
+  return res.json(doc);
+  return res.render("pages/quiz/add_one_questoin", {
+    isLoggesIn: true,
+    user: req.user,
+    role: "Professor",
+    data: doc,
+  }); 
+}
+
 
 module.exports = {
   find,
@@ -168,4 +182,5 @@ module.exports = {
   findForUser,
   listForUser,
   submitResponse,
+  listAttemptedStudents,
 };

@@ -19,6 +19,7 @@ router.post(
 );
 
 router.get("/quiz/:id", connectEnsureLogin.ensureLoggedIn("/home"), quiz.find);
+router.get("/quiz/:id/result", connectEnsureLogin.ensureLoggedIn("/home"), quiz.listAttemptedStudents);
 
 router.get(
   "/quiz/:id/add-one",

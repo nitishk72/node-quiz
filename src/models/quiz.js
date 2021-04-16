@@ -5,6 +5,10 @@ const Questoin = new Schema(
   {
     name: String,
     description: String,
+    attempted: {
+      type:Number,
+      default:0,
+    },
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   },
   { timestamps: true }

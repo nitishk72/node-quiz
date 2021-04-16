@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const Response = new Schema(
   {
-    userId: Schema.Types.ObjectId,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref:"loginInfo"
+    },
     quizId: {
       type: Schema.Types.ObjectId,
       ref: "Quiz" 
