@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="my-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-mg-6">
+          <div class="card">
+            <div class="card-header">
+              Upload CSV File
+            </div>
+            <div class="card-body">
+              <form action="" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label for="file">Select File</label>
+                  <input type="file" name="file" id="file" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

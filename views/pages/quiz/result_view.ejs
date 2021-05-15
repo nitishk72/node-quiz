@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+    <style>
+      .option {
+        cursor: pointer;
+        border: 1px solid gray;
+        padding: 10px;
+        margin: 4px 0px;
+        border-radius: 4px;
+      }
+
+      .option.selected {
+        background: gray;
+        color: #fff;
+      }
+
+      .option.selected-true {
+        background: #22bb33;
+        color: #fff;
+      }
+
+      .option.selected-false {
+        background: #bb2124;
+        color: #fff;
+      }
+    </style>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="container py-4">
+    <!-- Card -->
+    <div class="card">
+      <div class="card-header">
+        <%= data['userId']['name'] %>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <tr>
+            <td>Attempted</td>
+            <td>
+              <%= data['answers'].length %>
+            </td>
+          </tr>
+          <tr>
+            <td>Right</td>
+            <td>
+              <%= data['right'] %>
+            </td>
+          </tr>
+          <tr>
+            <td>Wrong</td>
+            <td>
+              <%= data['wrong'] %>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+    <!-- Card -->
+
+    <!-- Question -->
+    <% for(var i=0; i < data['answers'].length; i++) { %>
+      <div class="card my-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= i+1 %>.
+                <%= data['answers'][i]['questionId']['text'] %>
+            </div>
+            <div>
+              <span class="badge-<%= data['answers'][i]['isCorrect'] ? 'primary' : 'danger' %> badge">
+                <%= data['answers'][i]['marks'] %>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-body" id="<%= data['answers'][i]['questionId']['_id'] %>">
+          <% for(var j=0; j < data['answers'][i]['questionId']['options'].length; j++) { %>
+
+            <div
+              class="option <%= `${data['answers'][i]['questionId']['options'][j]['_id']}`==`${data['answers'][i]['optionId']['_id']}` ? 'selected' : '' %>-<%= data['answers'][i]['isCorrect'] %>"
+              id="<%= data['answers'][i]['questionId']['options'][j]['_id'] %>"
+              data-correct="<%= data['answers'][i]['questionId']['options'][j]['isCorrect'] %>">
+              <%= data['answers'][i]['questionId']['options'][j]['text'] %>
+            </div>
+            <% } %>
+        </div>
+      </div>
+      <% } %>
+        <!-- Question -->
+        </div>
+
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+  <script>
+    $('.option').on('click', function () {
+      let parentId = $(this).parent()[0].id;
+      $(`#${parentId}`).children().removeClass("selected");
+      $(this).addClass("selected");
+    });
+  </script>
+</body>
+
+</html>

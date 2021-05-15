@@ -12,25 +12,33 @@
   </header>
 
   <main class="container">
-      <h1 class="my-2">History</h1>
+    <h1 class="my-2">History</h1>
 
-      <table class="table table-bordered table-striped">
-        <tr>
-          <td>ID</td>
-          <td>Quiz</td>
-          <td>Total Question</td>
-          <td>Attempted Question</td>
-        </tr>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>Quiz</td>
+        <td>Attempted Question</td>
+        <td>Valid</td>
+        <td>Attempted At</td>
+      </tr>
       <% for(var i=0; i < response.length; i++) { %>
         <tr>
-          <td> <%= response[i]['_id'] %></td>
-          <td> <%= response[i]['quizId']['name'] %></td>
-          <td> <%= response[i]['quizId']['questions'].length %></td>
-          <td> <%= response[i]['answers'].length %></td>
+          <td>
+            <%= response[i]?.quizId?.name %>
+          </td>
+          <td>
+            <%= response[i]['answers'].length%>
+          </td>
+          <td>
+            <%= response[i]['isValid']['value'] %>
+          </td>
+          <td>
+            <%= response[i]['createdAt'] %>
+          </td>
         </tr>
         <% } %>
 
-      </table>
+    </table>
   </main>
 
   <footer>

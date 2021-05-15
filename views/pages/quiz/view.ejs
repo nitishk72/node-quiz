@@ -3,19 +3,20 @@
 
 <head>
   <%- include('../../partials/head'); %>
-  <style>
-    .option{
-      cursor: pointer;
-      border:1px solid gray;
-      padding:10px;
-      margin: 4px 0px;
-      border-radius: 4px;
-    }
-    .option.selected{
-      background: gray;
-      color:#fff;
-    }
-  </style>
+    <style>
+      .option {
+        cursor: pointer;
+        border: 1px solid gray;
+        padding: 10px;
+        margin: 4px 0px;
+        border-radius: 4px;
+      }
+
+      .option.selected {
+        background: gray;
+        color: #fff;
+      }
+    </style>
 </head>
 
 <body>
@@ -27,7 +28,8 @@
   <main class="container py-4">
     <div class="mb-2 mr-3">
       <div class="row justify-content-end">
-        <a href="/professor/quiz/<%= data['_id'] %>/add-one" class="btn btn-primary">Add Question</a>
+        <a href="/professor/quiz/<%= data['_id'] %>/add-one" class="btn btn-sm btn-primary mr-4">Add</a>
+        <a href="/professor/quiz/<%= data['_id'] %>/upload" class="btn btn-sm btn-dark">Upload</a>
       </div>
     </div>
     <div class="card">
@@ -39,44 +41,75 @@
           <%= data['description'] %>
         </div>
         <div class="mb-2">
-          Total Attmpted : <%= data['attempted'] %> times
+          Available For: <%= data['available_for'].length %> Students
         </div>
-        <a href="/professor/quiz/6078062bc3edca5986af5226/result" class="btn btn-primary">View Student Details</a>
+
+        <div class="mb-2">
+          Total Questions: <%= data['questions'].length %>
+        </div>
       </div>
     </div>
-    
-    <% for(var i=0; i < data['questions'].length; i++) { %>
-      <div class="card my-4">
-        <div class="card-header">
-          <div class="d-flex justify-content-between">
-            <div><%= data['questions'][i]['text'] %></div>
-            <div>
-              <a href="./question/<%= data['questions'][i]['_id']%>delete"></a>
+
+    <div class="card my-4">
+      <div class="card-header">Link Group</div>
+      <div class="card-body">
+        <form action="/professor/quiz/608043c9b2940af0354dcb48/link-group" method="post">
+          <div class="mb-2">
+            <select name="group_id" id="group" class="form-control">
+              <% for(var i=0 ; i < group.length;i++){ %>
+                <option value="<%= group[i]['_id'] %>">
+                  <%= group[i]['name'] %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div class="mt-2">
+            <button type="submit" class="btn btn-block btn-dark">Link Group</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <% if(type !=undefined || message !=undefined){%>
+      <p class="alert alert-<%= type %>">
+        <%= message %>
+      </p>
+      <% }%>
+
+        <% for(var i=0; i < data['questions'].length; i++) { %>
+          <div class="card mb-4">
+            <div class="card-header">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <%= i+1%>. <%= data['questions'][i]['text'] %>
+                </div>
+                <div>
+                  <a href="./question/<%= data['questions'][i]['_id']%>delete"></a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body" id="<%= data['questions'][i]['_id'] %>">
+              <% for(var j=0; j < data['questions'][i]['options'].length; j++) { %>
+                <div class="option" data-correct="<%= data['questions'][i]['options'][j]['isCorrect'] %>">
+                  <%= data['questions'][i]['options'][j]['text'] %>
+                </div>
+                <% } %>
             </div>
           </div>
-        </div>
-        <div class="card-body" id="<%= data['questions'][i]['_id'] %>">
-          <% for(var j=0; j < data['questions'][i]['options'].length; j++) { %>
-            <div class="option" 
-            data-correct="<%= data['questions'][i]['options'][j]['isCorrect'] %>">
-            <%= data['questions'][i]['options'][j]['text'] %>
-          </div>
           <% } %>
-        </div>
-      </div>
-    <% } %>
   </main>
 
   <footer>
     <%- include('../../partials/footer'); %>
   </footer>
-<script>
-  $('.option').on('click', function(){
-    let parentId = $(this).parent()[0].id;
-    $(`#${parentId}`).children().removeClass("selected");
-    $(this).addClass("selected");
-  });
-</script>
+  <script>
+    $('.option').on('click', function () {
+      let parentId = $(this).parent()[0].id;
+      $(`#${parentId}`).children().removeClass("selected");
+      $(this).addClass("selected");
+    });
+  </script>
 </body>
 
 </html>

@@ -14,17 +14,13 @@
   <main class="container py-4">
     <table class="table table-bordered table-striped">
       <thead>
-        <th>ID</th>
         <th>Name</th>
         <th>Total Question</th>
-        <th>Last Update</th>
+        <th width="320">Last Update</th>
         <th width="150">Action</th>
       </thead>
       <% for(var i=0; i < data.length; i++) { %>
         <tr>
-          <td>
-            <%= data[i]['_id'] %>
-          </td>
           <td>
             <%= data[i]['name'] %>
           </td>
@@ -35,7 +31,7 @@
             <%= new Date(data[i]['updatedAt']) %>
           </td>
           <td>
-            <a class="btn btn-dark btn-sm" href="/quiz/<%= data[i]['_id'] %>">View</a>
+            <a class="btn btn-dark btn-sm" href="/quiz/<%= data[i]['_id'] %>">Start</a>
           </td>
         </tr>
         <% } %>

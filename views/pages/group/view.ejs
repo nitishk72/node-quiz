@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="container py-4">
+    <div class="mb-2 mr-3">
+      <div class="row justify-content-end">
+        <a href="/professor/group/<%= quizId %>/download" class="btn btn-primary">Download CSV</a>
+      </div>
+    </div>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Action</td>
+      </tr>
+      <% for(var i=0 ; i < data['available_for'].length;i++) {%>
+        <tr>
+          <td>
+            <%= data['available_for'][i]['name'] %>
+          </td>
+          <td>
+            <%= data['available_for'][i]['email'] %>
+          </td>
+          <td>
+            <a class="btn btn-danger btn-sm"
+              href="/professor/group/<%= quizId %>/<%=data['available_for'][i]['_id']%>/remove">Remove</a>
+          </td>
+        </tr>
+        <% } %>
+    </table>
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

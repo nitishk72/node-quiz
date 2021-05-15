@@ -15,11 +15,11 @@ router.get(
   connectEnsureLogin.ensureLoggedIn("/login"),
   quiz.add_bulk_question
 );
-router.get(
-  "/:quizID/add_one",
-  connectEnsureLogin.ensureLoggedIn("/login"),
-  quiz.add_one_question
-);
+// router.get(
+//   "/:quizID/add_one",
+//   connectEnsureLogin.ensureLoggedIn("/login"),
+//   professor.add_one_question
+// );
 
 router.post('/ajax/submit-response', connectEnsureLogin.ensureLoggedIn('/login'), quiz.submitResponse);
 

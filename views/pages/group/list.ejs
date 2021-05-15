@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="container py-4">
+    <div class="mb-2 mr-3">
+      <div class="row justify-content-end">
+        <a href="/professor/group/add" class="btn btn-primary">Create</a>
+      </div>
+    </div>
+    <table class="table table-bordered table-stiped">
+      <tr>
+        <td>Name</td>
+        <td>No of Students</td>
+        <td>Add Students</td>
+        <td>Action</td>
+      </tr>
+      <% for(var i=0 ; i < data.length;i++) {%>
+        <tr>
+          <td>
+            <a href="/professor/group/<%= data[i]['_id']%>">
+              <%= data[i]['name'] %>
+            </a>
+          </td>
+          <td>
+            <%= data[i]['available_for'].length %>
+          </td>
+          <td>
+            <a href="/professor/group/<%= data[i]['_id'] %>/add" class="btn btn-sm btn-dark">Add Student</a>
+          </td>
+          <td>
+            <a href="/professor/group/<%= data[i]['_id'] %>/delete" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+    </table>
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

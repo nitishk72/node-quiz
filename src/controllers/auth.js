@@ -2,7 +2,15 @@ const passport = require('passport');
 const UserDetails = require('../models/user');
 
 function login(req, res, next) {
-  return res.render('pages/auth/login', { isLoggesIn: false });
+  let message = req.flash('message');
+  let type = req.flash('type');
+
+  return res.render('pages/auth/login', {
+    isLoggesIn: false,
+    user: req.user,
+    message: message,
+    type: type,
+  });
 }
 
 function loginAction(req, res, next) {
@@ -12,7 +20,9 @@ function loginAction(req, res, next) {
         return next(err);
       }
       if (!user) {
-        return res.redirect('/login?info=' + info);
+        req.flash('message', info);
+        req.flash('type', 'error');
+        return res.redirect('/login');
       }
 
       req.logIn(user, function (err) {
@@ -26,13 +36,14 @@ function loginAction(req, res, next) {
     })(req, res, next);
 }
 function register(req, res, next) {
-  return res.render('pages/auth/register', { isLoggesIn: false });
+  return res.render('pages/auth/register', { isLoggesIn: false, user: req.user });
 }
 async function registerAction(req, res, next) {
-  let { name, email, password } = req.body;
+  let { name, email, password, role } = req.body;
   let user = await UserDetails.register({
     username: email,
     name, email,
+    role,
   }, password)
 
   req.logIn(user, function (err) {
@@ -44,7 +55,7 @@ async function registerAction(req, res, next) {
   });
 }
 function forget(req, res, next) {
-  return res.render('pages/auth/forget');
+  return res.render('pages/auth/forget', { isLoggesIn: false, user: req.user });
 
 }
 function forgetAction(req, res, next) {

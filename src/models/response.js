@@ -5,22 +5,45 @@ const Response = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref:"loginInfo"
+      ref: "User"
     },
     quizId: {
       type: Schema.Types.ObjectId,
-      ref: "Quiz" 
+      ref: "Quiz"
     },
-    answers: [{ 
-      questionId :{
-        type: Schema.Types.ObjectId, 
-        ref: "Question" 
+    meta: String,
+    right: {
+      type: Number,
+    },
+    wrong: {
+      type: Number,
+    },
+    isValid: {
+      value: {
+        type: Boolean,
+        default: true,
       },
-      optionId :{
-        type: Schema.Types.ObjectId, 
-        ref: "Option" 
+      action: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
       }
+    },
+    answers: [{
+      questionId: {
+        type: Schema.Types.ObjectId,
+        ref: "Question"
+      },
+      optionId: {
+        type: Schema.Types.ObjectId,
+        ref: "Option"
+      },
+      isCorrect: Boolean,
+      marks: Number,
     }],
+    marks: {
+      type: Number,
+      default: 0,
+    }
   },
   { timestamps: true }
 );

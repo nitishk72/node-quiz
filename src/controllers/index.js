@@ -3,6 +3,7 @@ const auth = require("./auth");
 const dashboard = require("./dashboard");
 const professor = require("./professor");
 const quiz = require("./quiz");
+const group = require("./group");
 
 module.exports = {
   static,
@@ -10,4 +11,5 @@ module.exports = {
   dashboard,
   professor,
   quiz,
+  group,
 };

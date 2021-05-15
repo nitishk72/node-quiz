@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../../partials/header'); %>
+  </header>
+
+  <main class="container py-4">
+    <div class="mb-2 mr-3">
+      <div class="row justify-content-end">
+        <a href="/professor/quiz/<%= quizId %>/result.csv" class="btn btn-primary">Download CSV</a>
+      </div>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Right</th>
+        <th>Wrong</th>
+        <th>Valid</th>
+        <th>Submited At</th>
+        <th width="150">Action</th>
+      </thead>
+      <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <td>
+            <%= data[i]['userId']['name'] %>
+          </td>
+          <td>
+            <%= data[i]['userId']['username'] %>
+          </td>
+          <td>
+            <%= data[i]['right'] %>
+          </td>
+          <td>
+            <%= data[i]['wrong'] %>
+          </td>
+          <td>
+            <%= data[i]['isValid']['value'] %>
+          </td>
+          <td>
+            <%= new Date(data[i]['createdAt']) %>
+          </td>
+          <td>
+            <a class="btn btn-dark btn-sm" href="/professor/result/<%= data[i]['_id'] %>">View</a>
+            <a class="btn btn-warning btn-sm" href="/professor/quiz/<%= data[i]['_id'] %>/reset">Reset</a>
+          </td>
+        </tr>
+        <% } %>
+    </table>
+  </main>
+
+  <footer>
+    <%- include('../../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>
